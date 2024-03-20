@@ -226,7 +226,6 @@ body {
     0 var(--l)
   );
 }
-
 .left-div {
   flex-shrink: 0;
   width: 100%;
@@ -326,15 +325,45 @@ body {
   font-weight: 800;
   margin: 20px 0;
 }
-
 .index-logo {
-  flex-shrink: 0;
-  width: 45%;
-  margin-top: 30px;
-  position: relative;
-  aspect-ratio: 1/1;
-  background-size: cover;
-  border-radius: 50%;
+  text-align: center;
+}
+.index-logo > .img {
+  --w: 60vw; /* image width */
+  --r: 1; /* image ratio */
+  /* control the tape dimension (adjust to understand) */
+  --l: 37px;
+  --s: 20px;
+  --_d: calc(var(--s) + var(--l));
+  width: var(--w);
+  padding: calc(var(--_d) / 2);
+  box-sizing: border-box;
+
+  aspect-ratio: var(--r);
+  object-fit: cover;
+  --_g: calc(100% - var(--w) / 2) /
+    calc(var(--w) * (1 + 1 / var(--r)) - 2 * (var(--s) + var(--_d)));
+  background: repeating-conic-gradient(from 45deg, #0000 0 25%, #0005 0 50%)
+    var(--_g);
+  mask: repeating-conic-gradient(from 45deg, #000 0 25%, #0005 0 50%) var(--_g);
+  clip-path: polygon(
+    var(--l) 0,
+    var(--_d) var(--s),
+    calc(100% - var(--_d)) var(--s),
+    calc(100% - var(--l)) 0,
+    100% var(--l),
+    calc(100% - var(--s)) var(--_d),
+    calc(100% - var(--s)) calc(100% - var(--_d)),
+    100% calc(100% - var(--l)),
+    calc(100% - var(--l)) 100%,
+    calc(100% - var(--_d)) calc(100% - var(--s)),
+    var(--_d) calc(100% - var(--s)),
+    var(--l) 100%,
+    0 calc(100% - var(--l)),
+    var(--s) calc(100% - var(--_d)),
+    var(--s) var(--_d),
+    0 var(--l)
+  );
 }
 
 .description {
